@@ -7,5 +7,4 @@ export const example = () => {
 export const anotherExample = () => {
   return 'OMG';
 };
-
-console.log("prueba")
+console.log("hola")
