@@ -31,11 +31,17 @@ const sectionCenter = document.getElementById("section-center");
         <article class="atletla-item">
         <div class="item-nombre">
           <h2>${item.name}</h2>
+        <br>
         <div class="imagen">
         <img src="img/usuario.jpg" class="photo" alt="atletla item"/>
         </div>
+        <br>
+          <div class="info" >
           <h3 class="noc">${item.noc}</h3>
+          </div>
+          <div class="info">
           <h3 class="sport">${item.sport}</h3>
+          </div>
         </div>
         </article>
       `;
