@@ -1,6 +1,7 @@
 //import { example } from './data.js';
 //import athletes from './data/athletes/athletes.js';
 // import data from './data/lol/lol.js';
+import athletes from './data/athletes/athletes.js';
 import data from './data/athletes/athletes.js';
 // import data from './data/rickandmorty/rickandmorty.js';
 
@@ -22,10 +23,11 @@ import data from './data/athletes/athletes.js';
 
 
 const sectionCenter = document.getElementById("section-center");
+const newAthletes = new Set(data.athletes);
 
 
     const mostrarAtletas = data.athletes.forEach(function(item){
-        //console.log(item);
+        //const newAthletes = [...new Set(item.name)];
         const createElement = document.createElement("div");
         const template = `
         <article class="atletla-item">
@@ -40,7 +42,7 @@ const sectionCenter = document.getElementById("section-center");
           <h3 class="noc">${item.noc}</h3>
           </div>
           <div class="info">
-          <h3 class="sport">${item.sport}</h3>
+          <h3 class="sport">${item.event}</h3>
           </div>
         </div>
         </article>
@@ -48,7 +50,51 @@ const sectionCenter = document.getElementById("section-center");
     
     createElement.innerHTML=template; 
     sectionCenter.appendChild(createElement)
-    console.log(template);
+    //console.log(template);
     return template
 });
+/*funcion click p/ boton genero*/
+const botonGenero = document.getElementById("genero");
+botonGenero.addEventListener("click",()=>{
+
+let gender = data.athletes.filter(athletes => athletes.gender==="M");
+const genderList = [...new Set(gender)];
+console.log(genderList);
+},false);
+
+
+/*funcion click p/ boton deporte*/
+const botonDeporte = document.getElementById("deporte");
+botonDeporte.addEventListener("click",()=>{
+
+let sport = data.athletes.map(athletes => athletes.sport);
+const sportsList = [...new Set(sport)];
+console.log(sportsList);
+
+},false);
+
+
+/*funcion click p/ boton equipo*/
+const botonEquipo = document.getElementById("equipo");
+botonEquipo.addEventListener("click",()=>{
+
+let team = data.athletes.map(athletes => athletes.team);
+
+const teamsList = [...new Set(team)];
+console.log(teamsList);
+teamsList.forEach(element => {
+  const createElement = document.createElement("ul");
+  const template = `
+  <li>${element}</li>
+  `
+  createElement.innerHTML=template; 
+    sectionCenter.appendChild(createElement)
+});
+},false); 
+
+
+
+
+
+
 
