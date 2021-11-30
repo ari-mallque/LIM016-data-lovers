@@ -8,52 +8,51 @@
     <link rel="stylesheet" href="tarjeta.css" />
   </head>
   <body>
-    <header>
-    
+    <header>  
         <div class="aros" id="aros">
         <img src="img/icono.png" alt="">
         <h1 class="titulo">Atletas de las Olimpiadas de Río de Janeiro</h1>
-        </div>
-        
+        </div>    
     </header>
+
     <main>
-      <!--<div class= "botones">
-        <button id= "genero" class= "boton">GENERO </button>
-<ul aria-labelledby="genero">
-  <li class=> <a href="#">Femenino</a></li>
-  <li>Masculino</li>
-</ul>!----->
-<div class="container">
-  <br>
-  <div class="dropdown">
-      <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Tutoriales
-      <span class="caret"></span></button>
-      <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-        <li role="presentation">
-          <a role="menuitem" tabindex="-1" href="#">HTML Ya</a>
-        </li>
-        <li role="presentation">
-          <a role="menuitem" tabindex="-1" href="#">CSS Ya</a>
-        </li>
+      <section class= "filterContainer">
 
+       <form class="containerGender">
+         <label>GENERO:<br></label>
+         <select name="gender" id="gender" class="gender"> 
+          <option >Seleccione </option>
+         </select>
+       </form>
 
-        <button id="deporte" class= "boton">DEPORTE</button>
-        <button id= "equipo" class= "boton">EQUIPO</button>
-        <button id="medalla" class ="boton">MEDALLA</button>
+       <form class="containerSport">
+        <label>DEPORTE:<br></label>
+        <select id="sport"  class="sport"> 
+         <option >Seleccione </option>
+        </select>
+      </form>
+
+      <form class="containerTeam">
+        <label>EQUIPO:<br></label>
+        <select name="team" id="team" class="team"> 
+         <option >seleccione </option>
+        </select>
+      </form>
+
+      <form class="containerMedal">
+        <label>MEDALLA:<br></label>
+        <select name="medal" id="medal" class="medal" > 
+         <option >seleccione</option>
         
-      </div>
+        </select>
+      </form>
+      </section>
+    
+        
+      
 
       <div id="section-center">
-        <!--<article class="atletla-item">
-          <img src="img/usuario.jpg" class="photo" alt="atletla item"/>
-          <div class="item-nombre">
-            <header>
-            <h2>Luc Abalo</h2>
-            <h3 class="noc">FRA</h3>
-            <h3 class="sport">Handball</h3>
-            </header>
-          </div>
-        </article>!-->
+        
       </div>
 
     </main>
@@ -61,6 +60,6 @@
 
     <div id="root"></div>
     
-    <script src="main.js" type="module"></script>
+    <script src="main.js" type="module" defer></script>
   </body>
 </html>
