@@ -1,13 +1,15 @@
 //import { example } from './data.js';
 //import athletes from './data/athletes/athletes.js';
 // import data from './data/lol/lol.js';
-import athletes from './data/athletes/athletes.js';
+//import { directive } from '@babel/types';
+//import athletes from './data/athletes/athletes.js';
 import data from './data/athletes/athletes.js';
 // import data from './data/rickandmorty/rickandmorty.js';
 
 //console.log(example, data);
 //console.log(data.athletes);
 
+//Mostrar tarjetas
 const sectionCenter = document.getElementById("section-center");
 
 
@@ -38,7 +40,8 @@ const sectionCenter = document.getElementById("section-center");
     //console.log(template);
     return template
 });
-//select genero
+
+//select genero (opciones)
 function cboGender() {
   const gender = data.athletes.map(athletes => athletes.gender);
   const genderList = [...new Set(gender)];
@@ -48,45 +51,16 @@ function cboGender() {
   for (var i in genderList) {
     var option = document.createElement("option");
     option.classList.add(`genero${i}`);
+    option.value = genderList[i];
     option.text = genderList[i];
     select.add(option);
   }
   }
+
   cboGender();
   
 
-  //para  llamar a las opciones del select genero
-  /*let $selectGender = document.querySelector(".gender");
-
-  let opcionCambiada = () => {
-    
-    if(genderList=="F"){
-        data.athletes.filter(athletes => athletes.gender==="F");
-      console.log(genderList)
-    }
-  };
-  
-  $selectGender.addEventListener("change", opcionCambiada);*/
-  
-
-
-
-  const botonFemenino = document.querySelector('.genero0');
-  botonFemenino.addEventListener("click",()=>{
-  const genderFem = data.athletes.filter(athletes => athletes.gender==="F");
-  console.log(genderFem);
-  },false);
-
-  
-  const botonMasculino = document.querySelector('.genero1');
-  botonMasculino.addEventListener("click",()=>{
-  const genderFem = data.athletes.filter(athletes => athletes.gender==="M");
-  console.log(genderFem);
-  },false);
-
-
-
-//select deporte
+//select deporte (opciones)
 function cboSport() {
   const sport = data.athletes.map(athletes => athletes.sport);
   const sportList = [...new Set(sport)];
@@ -96,19 +70,15 @@ function cboSport() {
   for (var i in sportList) {
     var option = document.createElement("option");
     option.text = sportList[i];
+    option.value = sportList[i];
     select.add(option);
   }
   }
   
-  
   cboSport();
   
 
-//select equipo
-/*const botonEquipo = document.getElementById("team");
-botonEquipo.addEventListener("click",()=>{*/
-
-
+//select team (opciones)
 function cboTeam() {
 const team = data.athletes.map(athletes => athletes.team);
 const teamsList = [...new Set(team)];
@@ -120,57 +90,167 @@ for (var i in teamsList) {
   option.text = teamsList[i];
   option.value = teamsList[i];
   select.add(option);
-
- 
- 
   
 }
 }
 cboTeam();
 
-// para llamar a las opciones del select equipo
-const $selectTeam = document.querySelector(".team");
 
-const opcionCambiadaTeam = () => {
-  console.log("Cambio");
-};
-
-$selectTeam.addEventListener("change", opcionCambiadaTeam);
-
-
-
-
-// select medalla
+// select medalla (opciones)
 function cboMedal() {
   const medal = data.athletes.map(athletes => athletes.medal);
   const medalList = [...new Set(medal)];
-  //medalList.sort();
   
   let select = document.getElementById("medal");
   for (var i in medalList) {
     var option = document.createElement("option");
     option.classList.add(`medal${i}`);
     option.text = medalList[i];
+    option.value = medalList[i];
     select.add(option);
   }
   }
   cboMedal();
 
-  const botonGold = document.querySelector('.medal2');
-  botonGold.addEventListener("click",()=>{
-  const medalGold = data.athletes.filter(athletes => athletes.medal==="Gold");
-  console.log(medalGold);
-  },false);
+//Seleccionar la opción y mostrar las tarjetas (gender)
+  window.filterGender= function(selectObject){
+    const gender = data.athletes.filter(athletes => athletes.gender===selectObject.value);
 
-  const botonSilver = document.querySelector('.medal1');
-  botonSilver.addEventListener("click",()=>{
-  const medalSilver = data.athletes.filter(athletes => athletes.medal==="Silver");
-  console.log(medalSilver);
-  },false);
+    while(sectionCenter.firstChild){
+      sectionCenter.removeChild(sectionCenter.firstChild);
+    }
+    const listGender = gender.forEach(function(item){
+      //const newAthletes = [...new Set(item.name)];
+      const createElement = document.createElement("div");
+      const template = `
+      <article class="atletla-item">
+      <div class="item-nombre">
+        <h2>${item.name}</h2>
+      <br>
+      <div class="imagen">
+      <img src="img/usuario.jpg" class="photo" alt="atletla item"/>
+      </div>
+      <br>
+        <div class="info" >
+        <h3 class="noc">${item.noc}</h3>
+        </div>
+        <div class="info">
+        <h3 class="sport">${item.event}</h3>
+        </div>
+      </div>
+      </article>
+    `;
+  
+  createElement.innerHTML=template; 
+  sectionCenter.appendChild(createElement)
+  //console.log(template);
+  return template
+});
+}
+  
+//Seleccionar la opción y mostrar las tarjetas (sport)
+    window.filterSport= function(selectObject){
+      const sport = data.athletes.filter(athletes => athletes.sport===selectObject.value);
 
-  const botonBronze = document.querySelector('.medal0');
-  botonBronze.addEventListener("click",()=>{
-  const medalBronze = data.athletes.filter(athletes => athletes.medal==="Bronze");
-  console.log(medalBronze);
+      while(sectionCenter.firstChild){
+        sectionCenter.removeChild(sectionCenter.firstChild);
+      }
+      const listSport = sport.forEach(function(item){
+        //const newAthletes = [...new Set(item.name)];
+        const createElement = document.createElement("div");
+        const template = `
+        <article class="atletla-item">
+        <div class="item-nombre">
+          <h2>${item.name}</h2>
+        <br>
+        <div class="imagen">
+        <img src="img/usuario.jpg" class="photo" alt="atletla item"/>
+        </div>
+        <br>
+          <div class="info" >
+          <h3 class="noc">${item.noc}</h3>
+          </div>
+          <div class="info">
+          <h3 class="sport">${item.event}</h3>
+          </div>
+        </div>
+        </article>
+      `;
+    
+    createElement.innerHTML=template; 
+    sectionCenter.appendChild(createElement)
+    //console.log(template);
+    return template
+  });
+  }
 
-  },false);
+  //Seleccionar la opción y mostrar las tarjetas (medal)
+    window.filterMedal= function(selectObject){
+      const medal = data.athletes.filter(athletes => athletes.medal===selectObject.value);
+
+      while(sectionCenter.firstChild){
+        sectionCenter.removeChild(sectionCenter.firstChild);
+      }
+      const listMedal = medal.forEach(function(item){
+        //const newAthletes = [...new Set(item.name)];
+        const createElement = document.createElement("div");
+        const template = `
+        <article class="atletla-item">
+        <div class="item-nombre">
+          <h2>${item.name}</h2>
+        <br>
+        <div class="imagen">
+        <img src="img/usuario.jpg" class="photo" alt="atletla item"/>
+        </div>
+        <br>
+          <div class="info" >
+          <h3 class="noc">${item.noc}</h3>
+          </div>
+          <div class="info">
+          <h3 class="sport">${item.event}</h3>
+          </div>
+        </div>
+        </article>
+      `;
+    
+    createElement.innerHTML=template; 
+    sectionCenter.appendChild(createElement)
+    //console.log(template);
+    return template
+  });
+  }
+    
+  //Seleccionar la opción y mostrar las tarjetas (team)
+    window.filterTeam= function(selectObject){
+      const team = data.athletes.filter(athletes => athletes.team===selectObject.value);
+      while(sectionCenter.firstChild){
+        sectionCenter.removeChild(sectionCenter.firstChild);
+      }
+      const listTeam = team.forEach(function(item){
+        //const newAthletes = [...new Set(item.name)];
+        const createElement = document.createElement("div");
+        const template = `
+        <article class="atletla-item">
+        <div class="item-nombre">
+          <h2>${item.name}</h2>
+        <br>
+        <div class="imagen">
+        <img src="img/usuario.jpg" class="photo" alt="atletla item"/>
+        </div>
+        <br>
+          <div class="info" >
+          <h3 class="noc">${item.noc}</h3>
+          </div>
+          <div class="info">
+          <h3 class="sport">${item.event}</h3>
+          </div>
+        </div>
+        </article>
+      `;
+    
+    createElement.innerHTML=template; 
+    sectionCenter.appendChild(createElement)
+    //console.log(template);
+    return template
+  });
+  }
