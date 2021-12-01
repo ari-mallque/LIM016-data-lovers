@@ -10,7 +10,6 @@ import data from './data/athletes/athletes.js';
 
 const sectionCenter = document.getElementById("section-center");
 
-
     const mostrarAtletas = data.athletes.forEach(function(item){
         //const newAthletes = [...new Set(item.name)];
         const createElement = document.createElement("div");
@@ -55,18 +54,6 @@ function cboGender() {
   cboGender();
   
 
-  //para  llamar a las opciones del select genero
-  /*let $selectGender = document.querySelector(".gender");
-
-  let opcionCambiada = () => {
-    
-    if(genderList=="F"){
-        data.athletes.filter(athletes => athletes.gender==="F");
-      console.log(genderList)
-    }
-  };
-  
-  $selectGender.addEventListener("change", opcionCambiada);*/
   
 
 
@@ -174,3 +161,6 @@ function cboMedal() {
   console.log(medalBronze);
 
   },false);
+
+
+ 
