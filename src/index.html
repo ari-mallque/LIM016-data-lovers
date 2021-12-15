@@ -16,45 +16,51 @@
     </header>
 
     <div class= "containerSearch">
-      <input type="text" id="formulario" class="form control">
-      <button class="btn seach" id="botonSeach">Buscar</button>
+      <input placeholder="Buscar atetlas" type="text" id="formulario" class="form control">
+     <!--<button class="btn seach" id="botonSeach">Buscar</button>-->
+    </div>
+    <div class="">
+      <form class="containerSort">
+        <label>Ordenar por:<br></label>
+        <select name="sort" id="sort" class="sort"> 
+         <option value = "ascendente">A-Z</option>
+         <option value="descendente">Z-A</option>
+        </select>
+      </form>
     </div>
 
     <main>
       <section class= "filterContainer">
 
        <form class="containerGender">
-         <label>GENERO:<br></label>
+         <label>GÉNERO:<br></label>
          <select name="gender" id="gender" class="gender"> 
-          <option >Seleccione </option>
+          <option >Seleccione</option>
          </select>
        </form>
 
        <form class="containerSport">
         <label>DEPORTE:<br></label>
-        <select id="sport"  class="sport"> 
-         <option >Seleccione </option>
+        <select id="sport"  class="sport" > 
+         <option >Seleccione</option>
         </select>
       </form>
 
       <form class="containerTeam">
         <label>EQUIPO:<br></label>
         <select name="team" id="team" class="team"> 
-         <option >seleccione </option>
+         <option >Seleccione</option>
         </select>
       </form>
 
       <form class="containerMedal">
         <label>MEDALLA:<br></label>
-        <select name="medal" id="medal" class="medal" > 
-         <option >seleccione</option>
+        <select name="medal" id="medal" class="medal"> 
+         <option >Seleccione</option>
         
         </select>
       </form>
       </section>
-    
-        
-      
 
       <div id="section-center">
         
@@ -66,5 +72,6 @@
     <div id="root"></div>
     
     <script src="main.js" type="module" defer></script>
+    
   </body>
 </html>
