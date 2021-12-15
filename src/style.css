@@ -59,5 +59,13 @@ label{
     color: white;
 }
     
+ .containerSearch {
+    padding-top: 8%;
+   
+   display: flex;
+   justify-content: center;
+    
+ }
+
 
    

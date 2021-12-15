@@ -1,35 +1,37 @@
-//import { example } from './data.js';
-//import athletes from './data/athletes/athletes.js';
-// import data from './data/lol/lol.js';
-//import { directive } from '@babel/types';
-//import athletes from './data/athletes/athletes.js';
-import data from './data/athletes/athletes.js';
-// import data from './data/rickandmorty/rickandmorty.js';
 
-//console.log(example, data);
-//console.log(data.athletes);
+import data from "./data/athletes/athletes.js";
+import {  optionGender,optionSport, optionTeam, optionMedal } from "./data.js";
+
 
 //Mostrar tarjetas
 const sectionCenter = document.getElementById("section-center");
 
-
-    const mostrarAtletas = data.athletes.forEach(function(item){
+     data.athletes.forEach(function(item){
         //const newAthletes = [...new Set(item.name)];
         const createElement = document.createElement("div");
+        const imgAthlete =
+        //data.athletes.gender === "F"
+        item.gender === "F"
+        ? "./img/femenino.jpg"
+        : "./img/masculino.jpg";
         const template = `
         <article class="atletla-item">
+        <div class="cardContainer">
         <div class="item-nombre">
           <h2>${item.name}</h2>
-        <br>
+        </div>
         <div class="imagen">
-        <img src="img/usuario.jpg" class="photo" alt="atletla item"/>
+        <img src=${imgAthlete} class="photo" alt="atletla item"/>
+       
         </div>
         <br>
           <div class="info" >
-          <h3 class="noc">${item.noc}</h3>
-          </div>
-          <div class="info">
-          <h3 class="sport">${item.event}</h3>
+          <p class="age">Edad: ${item.age}</p>
+          <p class="height">Altura: ${item.height} cm</p>
+          <p class="weight">Peso: ${item.weight} kg</p>
+          <p class="team">País: ${item.team}</p>
+          <p class="medal">Medalla: ${item.medal}</p>
+          <p class="sport">Deporte: ${item.sport}</p>
           </div>
         </div>
         </article>
@@ -41,36 +43,33 @@ const sectionCenter = document.getElementById("section-center");
     return template
 });
 
+
 //select genero (opciones)
-function cboGender() {
-  const gender = data.athletes.map(athletes => athletes.gender);
-  const genderList = [...new Set(gender)];
-  genderList.sort();
+function genderAll() {
+  let arrayGender = optionGender(data.athletes);
   
   let select = document.getElementById("gender");
-  for (var i in genderList) {
+  for (var i in arrayGender) {
     var option = document.createElement("option");
     option.classList.add(`genero${i}`);
-    option.value = genderList[i];
-    option.text = genderList[i];
+    option.value = arrayGender[i];
+    option.text = arrayGender[i];
     select.add(option);
   }
   }
 
-  cboGender();
+  genderAll();
   
 
 //select deporte (opciones)
 function cboSport() {
-  const sport = data.athletes.map(athletes => athletes.sport);
-  const sportList = [...new Set(sport)];
-  sportList.sort();
-  
+  let arraySport = optionSport(data.athletes);
   let select = document.getElementById("sport");
-  for (var i in sportList) {
+  for (var i in arraySport) {
     var option = document.createElement("option");
-    option.text = sportList[i];
-    option.value = sportList[i];
+    option.classList.add(`deporte${i}`);
+    option.text = arraySport [i];
+    option.value = arraySport[i];
     select.add(option);
   }
   }
@@ -80,15 +79,12 @@ function cboSport() {
 
 //select team (opciones)
 function cboTeam() {
-const team = data.athletes.map(athletes => athletes.team);
-const teamsList = [...new Set(team)];
-teamsList.sort();
-
+let arrayTeam = optionTeam(data.athletes);
 let select = document.getElementById("team");
-for (var i in teamsList) {
+for (var i in arrayTeam) {
   var option = document.createElement("option");
-  option.text = teamsList[i];
-  option.value = teamsList[i];
+  option.text = arrayTeam[i];
+  option.value = arrayTeam[i];
   select.add(option);
   
 }
@@ -98,80 +94,102 @@ cboTeam();
 
 // select medalla (opciones)
 function cboMedal() {
-  const medal = data.athletes.map(athletes => athletes.medal);
-  const medalList = [...new Set(medal)];
-  
+  let arrayMedal = optionMedal(data.athletes);
   let select = document.getElementById("medal");
-  for (var i in medalList) {
+  for (var i in arrayMedal) {
     var option = document.createElement("option");
     option.classList.add(`medal${i}`);
-    option.text = medalList[i];
-    option.value = medalList[i];
+    option.text = arrayMedal[i];
+    option.value = arrayMedal[i];
     select.add(option);
   }
   }
   cboMedal();
 
 //Seleccionar la opción y mostrar las tarjetas (gender)
-  window.filterGender= function(selectObject){
-    const gender = data.athletes.filter(athletes => athletes.gender===selectObject.value);
+const genderSelect= document.getElementById("gender")
+genderSelect.addEventListener("change", (event)=>{
+const selectObject= event.target.value;
+const gender = data.athletes.filter(athletes => athletes.gender===selectObject);
 
     while(sectionCenter.firstChild){
       sectionCenter.removeChild(sectionCenter.firstChild);
     }
-    const listGender = gender.forEach(function(item){
+     gender.forEach(function(item){
       //const newAthletes = [...new Set(item.name)];
       const createElement = document.createElement("div");
-      const template = `
-      <article class="atletla-item">
-      <div class="item-nombre">
-        <h2>${item.name}</h2>
-      <br>
-      <div class="imagen">
-      <img src="img/usuario.jpg" class="photo" alt="atletla item"/>
-      </div>
-      <br>
-        <div class="info" >
-        <h3 class="noc">${item.noc}</h3>
+      const imgAthlete =
+      item.gender === "F"
+        ? "./img/femenino.jpg"
+        : "./img/masculino.jpg";
+        const template = `
+        <article class="atletla-item">
+        <div class="cardContainer">
+        <div class="item-nombre">
+          <h2>${item.name}</h2>
         </div>
-        <div class="info">
-        <h3 class="sport">${item.event}</h3>
+        <div class="imagen">
+        <img src=${imgAthlete} class="photo" alt="atletla item"/>
+       
         </div>
-      </div>
-      </article>
-    `;
+        <br>
+          <div class="info" >
+          <p class="age">Edad: ${item.age}</p>
+          <p class="height">Altura: ${item.height} cm</p>
+          <p class="weight">Peso: ${item.weight} kg</p>
+          <p class="team">País: ${item.team}</p>
+          <p class="medal">Medalla: ${item.medal}</p>
+          <p class="sport">Deporte: ${item.sport}</p>
+          </div>
+        </div>
+        </article>
+      `;
   
   createElement.innerHTML=template; 
   sectionCenter.appendChild(createElement)
   //console.log(template);
   return template
 });
-}
-  
-//Seleccionar la opción y mostrar las tarjetas (sport)
-    window.filterSport= function(selectObject){
-      const sport = data.athletes.filter(athletes => athletes.sport===selectObject.value);
+});
 
-      while(sectionCenter.firstChild){
-        sectionCenter.removeChild(sectionCenter.firstChild);
-      }
-      const listSport = sport.forEach(function(item){
+
+//Seleccionar la opción y mostrar las tarjetas (sport)
+ 
+const sportSelect= document.getElementById("sport")
+ sportSelect.addEventListener("change", (event)=>{
+const selectObject= event.target.value;
+const sport = data.athletes.filter(athletes => athletes.sport===selectObject);
+
+    while(sectionCenter.firstChild){
+      sectionCenter.removeChild(sectionCenter.firstChild);
+    }  
+
+        sport.forEach(function(item){
         //const newAthletes = [...new Set(item.name)];
         const createElement = document.createElement("div");
+        const imgAthlete =
+       // data.athletes.gender === "F"
+       item.gender === "F"
+        ? "./img/femenino.jpg"
+        : "./img/masculino.jpg";
         const template = `
         <article class="atletla-item">
+        <div class="cardContainer">
         <div class="item-nombre">
           <h2>${item.name}</h2>
-        <br>
+        </div>
         <div class="imagen">
-        <img src="img/usuario.jpg" class="photo" alt="atletla item"/>
+        <img src=${imgAthlete} class="photo" alt="atletla item"/>
+       
         </div>
         <br>
           <div class="info" >
-          <h3 class="noc">${item.noc}</h3>
-          </div>
-          <div class="info">
-          <h3 class="sport">${item.event}</h3>
+          <p class="age">Edad: ${item.age}</p>
+          <p class="height">Altura: ${item.height} cm</p>
+          <p class="weight">Peso: ${item.weight} kg</p>
+          <p class="team">País: ${item.team}</p>
+          <p class="medal">Medalla: ${item.medal}</p>
+          <p class="sport">Deporte: ${item.sport}</p>
           </div>
         </div>
         </article>
@@ -179,35 +197,46 @@ function cboMedal() {
     
     createElement.innerHTML=template; 
     sectionCenter.appendChild(createElement)
-    //console.log(template);
+  
     return template
   });
-  }
+  });
 
   //Seleccionar la opción y mostrar las tarjetas (medal)
-    window.filterMedal= function(selectObject){
-      const medal = data.athletes.filter(athletes => athletes.medal===selectObject.value);
+  const medalSelect= document.getElementById("medal")
+    medalSelect.addEventListener("change", (event)=>{
+  const selectObject= event.target.value;
+  const medal = data.athletes.filter(athletes => athletes.medal===selectObject);
 
       while(sectionCenter.firstChild){
         sectionCenter.removeChild(sectionCenter.firstChild);
       }
-      const listMedal = medal.forEach(function(item){
+      medal.forEach(function(item){
         //const newAthletes = [...new Set(item.name)];
         const createElement = document.createElement("div");
+        const imgAthlete =
+        //data.athletes.gender === "F"
+        item.gender === "F"
+        ? "./img/femenino.jpg"
+        : "./img/masculino.jpg";
         const template = `
         <article class="atletla-item">
+        <div class="cardContainer">
         <div class="item-nombre">
           <h2>${item.name}</h2>
-        <br>
+        </div>
         <div class="imagen">
-        <img src="img/usuario.jpg" class="photo" alt="atletla item"/>
+        <img src=${imgAthlete} class="photo" alt="atletla item"/>
+       
         </div>
         <br>
           <div class="info" >
-          <h3 class="noc">${item.noc}</h3>
-          </div>
-          <div class="info">
-          <h3 class="sport">${item.event}</h3>
+          <p class="age">Edad: ${item.age}</p>
+          <p class="height">Altura: ${item.height} cm</p>
+          <p class="weight">Peso: ${item.weight} kg</p>
+          <p class="team">País: ${item.team}</p>
+          <p class="medal">Medalla: ${item.medal}</p>
+          <p class="sport">Deporte: ${item.sport}</p>
           </div>
         </div>
         </article>
@@ -218,17 +247,99 @@ function cboMedal() {
     //console.log(template);
     return template
   });
-  }
+  });
     
   //Seleccionar la opción y mostrar las tarjetas (team)
-    window.filterTeam= function(selectObject){
-      const team = data.athletes.filter(athletes => athletes.team===selectObject.value);
+  const teamSelect= document.getElementById("team")
+    teamSelect.addEventListener("change", (event)=>{
+  const selectObject= event.target.value;
+  const team = data.athletes.filter(athletes => athletes.team===selectObject);
+
       while(sectionCenter.firstChild){
         sectionCenter.removeChild(sectionCenter.firstChild);
       }
-      const listTeam = team.forEach(function(item){
+        team.forEach(function(item){
         //const newAthletes = [...new Set(item.name)];
         const createElement = document.createElement("div");
+        const imgAthlete =
+       //data.athletes.gender === "F"
+       item.gender === "F"
+        ? "./img/femenino.jpg"
+        : "./img/masculino.jpg";
+        const template = `
+        <article class="atletla-item">
+        <div class="cardContainer">
+        <div class="item-nombre">
+          <h2>${item.name}</h2>
+        </div>
+        <div class="imagen">
+        <img src=${imgAthlete} class="photo" alt="atletla item"/>
+       
+        </div>
+        <br>
+          <div class="info" >
+          <p class="age">Edad: ${item.age}</p>
+          <p class="height">Altura: ${item.height} cm</p>
+          <p class="weight">Peso: ${item.weight} kg</p>
+          <p class="team">País: ${item.team}</p>
+          <p class="medal">Medalla: ${item.medal}</p>
+          <p class="sport">Deporte: ${item.sport}</p>
+          </div>
+        </div>
+        </article>
+      `;
+    
+    createElement.innerHTML=template; 
+    sectionCenter.appendChild(createElement)
+    //console.log(template);
+    return template
+  });
+  });
+
+  //Boton Buscador
+  //const formulario = document.querySelector('#formulario');
+  
+  const filtrar = ()=>{
+    document.getElementById("section-center").innerHTML="";
+ 
+    const sectionCenter = document.getElementById("section-center");
+    const valorstring = document.getElementById("formulario").value;
+    const dat  = data.athletes.filter(athletes =>{
+      const search = athletes.name.toLowerCase() 
+      return search.includes(valorstring.toLowerCase())
+    });
+   
+     dat.forEach(function(item){
+      const createElement = document.createElement("div");
+      const imgAthlete =
+      //data.athletes.gender === "F"
+      item.gender === "F"
+       ? "./img/femenino.jpg"
+       : "./img/masculino.jpg";
+       const template = `
+       <article class="atletla-item">
+       <div class="cardContainer">
+       <div class="item-nombre">
+         <h2>${item.name}</h2>
+       </div>
+       <div class="imagen">
+       <img src=${imgAthlete} class="photo" alt="atletla item"/>
+      
+       </div>
+       <br>
+         <div class="info" >
+         <p class="age">Edad: ${item.age}</p>
+         <p class="height">Altura: ${item.height} cm</p>
+         <p class="weight">Peso: ${item.weight} kg</p>
+         <p class="team">País: ${item.team}</p>
+         <p class="medal">Medalla: ${item.medal}</p>
+         <p class="sport">Deporte: ${item.sport}</p>
+         </div>
+       </div>
+       </article>
+       `;
+        
+     /*   const createElement = document.createElement("div");
         const template = `
         <article class="atletla-item">
         <div class="item-nombre">
@@ -246,11 +357,156 @@ function cboMedal() {
           </div>
         </div>
         </article>
-      `;
+      `;*/
     
     createElement.innerHTML=template; 
     sectionCenter.appendChild(createElement)
     //console.log(template);
     return template
+ });
+ };
+
+  const inputTex = document.getElementById("formulario");
+  inputTex.addEventListener('keyup',filtrar)
+ 
+
+    const teamSelect1= document.getElementById("sort")
+    teamSelect1.addEventListener("change", (event)=>{
+    const selectObject1= event.target.value;
+  
+    if (selectObject1 === "ascendente")
+    {
+      Ascendente();
+     // const arrayAthletes1 =  data.athletes.sort((athletes, oathletes) => athletes.name.localeCompare(oathletes.name)); 
+    }
+    else 
+    {
+      Descendente();
+      //const arrayAthletes2 =  data.athletes.sort((athletes, oathletes) => oathletes.name.localeCompare(athletes.name)); 
+    }
   });
+
+  function Ascendente(){
+    const arrayAthletes1 =  data.athletes.sort((athletes, oathletes) => athletes.name.localeCompare(oathletes.name)); 
+ 
+    while(sectionCenter.firstChild){
+      sectionCenter.removeChild(sectionCenter.firstChild);
+    }  
+         arrayAthletes1.forEach(function(item){
+          //const newAthletes = [...new Set(item.name)];
+          const createElement = document.createElement("div");
+          const imgAthlete =
+          //data.athletes.gender === "F"
+          item.gender === "F"
+           ? "./img/femenino.jpg"
+           : "./img/masculino.jpg";
+           const template = `
+           <article class="atletla-item">
+           <div class="cardContainer">
+           <div class="item-nombre">
+             <h2>${item.name}</h2>
+           </div>
+           <div class="imagen">
+           <img src=${imgAthlete} class="photo" alt="atletla item"/>
+          
+           </div>
+           <br>
+             <div class="info" >
+             <p class="age">Edad: ${item.age}</p>
+             <p class="height">Altura: ${item.height} cm</p>
+             <p class="weight">Peso: ${item.weight} kg</p>
+             <p class="team">País: ${item.team}</p>
+             <p class="medal">Medalla: ${item.medal}</p>
+             <p class="sport">Deporte: ${item.sport}</p>
+             </div>
+           </div>
+           </article>
+        `;
+      createElement.innerHTML=template; 
+      sectionCenter.appendChild(createElement)
+      //console.log(template);
+      return template
+        });
   }
+
+  function Descendente(){
+ const arrayAthletes1 =  data.athletes.sort((athletes, oathletes) => oathletes.name.localeCompare(athletes.name)); 
+
+ while(sectionCenter.firstChild){
+   sectionCenter.removeChild(sectionCenter.firstChild);
+ }  
+      arrayAthletes1.forEach(function(item){
+       //const newAthletes = [...new Set(item.name)];
+       const createElement = document.createElement("div");
+       const imgAthlete =
+       //data.athletes.gender === "F"
+       item.gender === "F"
+        ? "./img/femenino.jpg"
+        : "./img/masculino.jpg";
+        const template = `
+        <article class="atletla-item">
+        <div class="cardContainer">
+        <div class="item-nombre">
+          <h2>${item.name}</h2>
+        </div>
+        <div class="imagen">
+        <img src=${imgAthlete} class="photo" alt="atletla item"/>
+       
+        </div>
+        <br>
+          <div class="info" >
+          <p class="age">Edad: ${item.age}</p>
+          <p class="height">Altura: ${item.height} cm</p>
+          <p class="weight">Peso: ${item.weight} kg</p>
+          <p class="team">País: ${item.team}</p>
+          <p class="medal">Medalla: ${item.medal}</p>
+          <p class="sport">Deporte: ${item.sport}</p>
+          </div>
+        </div>
+        </article>
+     `;
+   createElement.innerHTML=template; 
+   sectionCenter.appendChild(createElement)
+   //console.log(template);
+   return template
+     });
+}
+   
+   // orderAz();
+/*
+    let arrayAz = sortAz(data.athletes);
+    let select = document.getElementById("ascendente");
+    const mostrarAtletasAz = arrayAz.forEach(function(item){
+      //const newAthletes = [...new Set(item.name)];
+      const createElement = document.createElement("div");
+      const imgAthlete =
+      item.gender === "F"
+      ? "./img/femenino.jpg"
+      : "./img/masculino.jpg";
+      const template = `
+      <article class="atletla-item">
+      <div class="cardContainer">
+      <div class="item-nombre">
+        <h2>${item.name}</h2>
+      </div>
+      <div class="imagen">
+      <img src=${imgAthlete} class="photo" alt="atletla item"/>
+     
+      </div>
+      <br>
+        <div class="info" >
+        <p class="age">Edad: ${item.age}</p>
+        <p class="height">Altura: ${item.height} cm</p>
+        <p class="weight">Peso: ${item.weight} kg</p>
+        <p class="team">País: ${item.team}</p>
+        <p class="medal">Medalla: ${item.medal}</p>
+        <p class="sport">Deporte: ${item.sport}</p>
+        </div>
+      </div>
+      </article>
+    `;
+  
+  createElement.innerHTML=template; 
+  select.appendChild(createElement)
+  return template
+});*/
