@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Data Lovers</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter&display=swap"/> 
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="tarjeta.css" />
+  </head>
+  <body>
+    <header>  
+        <div class="aros" id="aros">
+        <img src="img/icono.png" alt="">
+        <h1 class="titulo">Atletas de las Olimpiadas de Río de Janeiro</h1>
+        </div>    
+    </header>
+
+    <div class= "containerSearch">
+      <input placeholder="Buscar atetlas" type="text" id="formulario" class="form control">
+     <!--<button class="btn seach" id="botonSeach">Buscar</button>-->
+    </div>
+    <div class="">
+      <form class="containerSort">
+        <label>Ordenar por:<br></label>
+        <select name="sort" id="sort" class="sort"> 
+         <option value = "ascendente">A-Z</option>
+         <option value="descendente">Z-A</option>
+        </select>
+      </form>
+    </div>
+
+    <main>
+      <section class= "filterContainer">
+
+       <form class="containerGender">
+         <label>GÉNERO:<br></label>
+         <select name="gender" id="gender" class="gender"> 
+          <option >Seleccione</option>
+         </select>
+       </form>
+
+       <form class="containerSport">
+        <label>DEPORTE:<br></label>
+        <select id="sport"  class="sport" > 
+         <option >Seleccione</option>
+        </select>
+      </form>
+
+      <form class="containerTeam">
+        <label>EQUIPO:<br></label>
+        <select name="team" id="team" class="team"> 
+         <option >Seleccione</option>
+        </select>
+      </form>
+
+      <form class="containerMedal">
+        <label>MEDALLA:<br></label>
+        <select name="medal" id="medal" class="medal"> 
+         <option >Seleccione</option>
+        
+        </select>
+      </form>
+      </section>
+
+      <div id="section-center">
+        
+      </div>
+
+    </main>
+
+
+    <div id="root"></div>
+    
+    <script src="main.js" type="module" defer></script>
+    
+  </body>
+</html>
