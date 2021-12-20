@@ -1,6 +1,6 @@
 
 import data from "./data/athletes/athletes.js";
-import {  optionGender,optionSport, optionTeam, optionMedal } from "./data.js";
+import {  optionGender,optionSport, optionTeam, optionMedal,sortAz } from "./data.js";
 
 
 //Mostrar tarjetas
@@ -111,6 +111,10 @@ const genderSelect= document.getElementById("gender")
 genderSelect.addEventListener("change", (event)=>{
 const selectObject= event.target.value;
 const gender = data.athletes.filter(athletes => athletes.gender===selectObject);
+    sportSelect.value="Seleccione"; 
+    medalSelect.value="Seleccione";
+    teamSelect.value="Seleccione";
+    sortSelect.value="Seleccione";
 
     while(sectionCenter.firstChild){
       sectionCenter.removeChild(sectionCenter.firstChild);
@@ -159,6 +163,11 @@ const sportSelect= document.getElementById("sport")
  sportSelect.addEventListener("change", (event)=>{
 const selectObject= event.target.value;
 const sport = data.athletes.filter(athletes => athletes.sport===selectObject);
+    genderSelect.value="Seleccione"; 
+    medalSelect.value="Seleccione";
+    teamSelect.value="Seleccione";
+    sortSelect.value="Seleccione";
+ 
 
     while(sectionCenter.firstChild){
       sectionCenter.removeChild(sectionCenter.firstChild);
@@ -207,6 +216,11 @@ const sport = data.athletes.filter(athletes => athletes.sport===selectObject);
     medalSelect.addEventListener("change", (event)=>{
   const selectObject= event.target.value;
   const medal = data.athletes.filter(athletes => athletes.medal===selectObject);
+  genderSelect.value="Seleccione";
+    sportSelect.value="Seleccione";
+    teamSelect.value="Seleccione";
+    sortSelect.value="Seleccione";
+ 
 
       while(sectionCenter.firstChild){
         sectionCenter.removeChild(sectionCenter.firstChild);
@@ -254,6 +268,10 @@ const sport = data.athletes.filter(athletes => athletes.sport===selectObject);
     teamSelect.addEventListener("change", (event)=>{
   const selectObject= event.target.value;
   const team = data.athletes.filter(athletes => athletes.team===selectObject);
+    genderSelect.value="Seleccione";
+    sportSelect.value="Seleccione";
+    medalSelect.value="Seleccione";
+    sortSelect.value="Seleccione";
 
       while(sectionCenter.firstChild){
         sectionCenter.removeChild(sectionCenter.firstChild);
@@ -301,6 +319,11 @@ const sport = data.athletes.filter(athletes => athletes.sport===selectObject);
   
   const filtrar = ()=>{
     document.getElementById("section-center").innerHTML="";
+    genderSelect.value="Seleccione";
+    sportSelect.value="Seleccione";
+    medalSelect.value="Seleccione";
+    teamSelect.value="Seleccione";
+    sortSelect.value="Seleccione";
  
     const sectionCenter = document.getElementById("section-center");
     const valorstring = document.getElementById("formulario").value;
@@ -367,15 +390,22 @@ const sport = data.athletes.filter(athletes => athletes.sport===selectObject);
  };
 
   const inputTex = document.getElementById("formulario");
+  
+ 
   inputTex.addEventListener('keyup',filtrar)
  
 
-    const teamSelect1= document.getElementById("sort")
-    teamSelect1.addEventListener("change", (event)=>{
+    const sortSelect= document.getElementById("sort")
+    sortSelect.addEventListener("change", (event)=>{
     const selectObject1= event.target.value;
-  
+    genderSelect.value="Seleccione";
+    sportSelect.value="Seleccione";
+    medalSelect.value="Seleccione";
+    teamSelect.value="Seleccione";
+ 
     if (selectObject1 === "ascendente")
     {
+      sortAz(data.athletes);
       Ascendente();
      // const arrayAthletes1 =  data.athletes.sort((athletes, oathletes) => athletes.name.localeCompare(oathletes.name)); 
     }

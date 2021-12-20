@@ -23,8 +23,9 @@ const optionMedal=(athletes)=> {
   return medalList;
 }
 const sortAz=(athletes)=>{
-  const newArray= Array.from(athletes);
-  return newArray.sort();
+  console.log(athletes);
+   //const newArray= Array.from(athletes);
+  //return newArray.sort();
 
 }
 
