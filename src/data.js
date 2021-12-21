@@ -22,18 +22,26 @@ const optionMedal=(athletes)=> {
   const medalList = [...new Set(medal)];
   return medalList;
 }
-const sortAz=(athletes)=>{
-  console.log(athletes);
-   //const newArray= Array.from(athletes);
-  //return newArray.sort();
 
-}
+// const sortAz=()=>{
+//   const newArray = Array.from(data.athletes);
+//   //console.log(newArray);
 
-const sortZa=(athletes)=>{
-  const newArray= Array.from(athletes);
-  return newArray.reverse();
+//   return newArray.sort((nombre, nombre1) => {
+//     return (nombre.name < nombre1.name) ? -1 : 1
+//     //console.log(newArray);
+//   }); 
+  
+  
+// }
+// console.log(newArray);
 
-}
+
+// const sortZa=(athletes)=>{
+//   const newArray= Array.from(athletes);
+//   return newArray.reverse();
+
+// }
 //const filtergender=(athletes,gender,seleccionado)=>{
   //const genders = athletes.filter(athlete => athlete.gender===seleccionado);
   //return genders
@@ -41,6 +49,6 @@ const sortZa=(athletes)=>{
 
 
 
-export{optionGender,optionSport, optionTeam, optionMedal, sortAz,sortZa
+export{optionGender,optionSport, optionTeam, optionMedal,
 
   }

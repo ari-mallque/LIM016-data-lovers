@@ -1,6 +1,6 @@
 
 import data from "./data/athletes/athletes.js";
-import {  optionGender,optionSport, optionTeam, optionMedal,sortAz } from "./data.js";
+import {  optionGender,optionSport, optionTeam, optionMedal } from "./data.js";
 
 
 //Mostrar tarjetas
@@ -268,11 +268,10 @@ const sport = data.athletes.filter(athletes => athletes.sport===selectObject);
     teamSelect.addEventListener("change", (event)=>{
   const selectObject= event.target.value;
   const team = data.athletes.filter(athletes => athletes.team===selectObject);
-    genderSelect.value="Seleccione";
+  genderSelect.value="Seleccione";
     sportSelect.value="Seleccione";
     medalSelect.value="Seleccione";
     sortSelect.value="Seleccione";
-
       while(sectionCenter.firstChild){
         sectionCenter.removeChild(sectionCenter.firstChild);
       }
@@ -405,7 +404,7 @@ const sport = data.athletes.filter(athletes => athletes.sport===selectObject);
  
     if (selectObject1 === "ascendente")
     {
-      sortAz(data.athletes);
+      //sortAz(data.athletes);
       Ascendente();
      // const arrayAthletes1 =  data.athletes.sort((athletes, oathletes) => athletes.name.localeCompare(oathletes.name)); 
     }
