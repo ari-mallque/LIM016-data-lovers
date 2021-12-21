@@ -27,7 +27,6 @@ const sortAz=(athletes)=>{
   return newArray.sort();
 
 }
-
 const sortZa=(athletes)=>{
   const newArray= Array.from(athletes);
   return newArray.reverse();
