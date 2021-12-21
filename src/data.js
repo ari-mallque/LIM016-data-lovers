@@ -23,6 +23,7 @@ const optionMedal=(athletes)=> {
   return medalList;
 }
 
+
 // const sortAz=()=>{
 //   const newArray = Array.from(data.athletes);
 //   //console.log(newArray);
@@ -35,6 +36,8 @@ const optionMedal=(athletes)=> {
   
 // }
 // console.log(newArray);
+
+
 
 
 // const sortZa=(athletes)=>{

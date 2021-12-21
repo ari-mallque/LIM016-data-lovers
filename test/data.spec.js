@@ -1,4 +1,4 @@
-import {optionGender , anotherExample } from '../src/data.js';
+import {optionGender } from '../src/data.js';
 
 
 describe('optionGender', () => {
@@ -12,12 +12,12 @@ describe('optionGender', () => {
 });
 
 
-describe('anotherExample', () => {
-  it('is a function', () => {
-    expect(typeof anotherExample).toBe('function');
-  });
+//describe('anotherExample', () => {
+  //it('is a function', () => {
+    //expect(typeof anotherExample).toBe('function');
+  //});
 
-  it('returns `anotherExample`', () => {
-    expect(anotherExample()).toBe('OMG');
-  });
-});
+//   it('returns `anotherExample`', () => {
+//     expect(anotherExample()).toBe('OMG');
+//   });
+// });
